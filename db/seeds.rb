@@ -6,6 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'rest-client'
+require 'byebug'
+require 'json'
+require 'active_support/all'
+Song.destroy_all
+User.destroy_all
+SavedSong.destroy_all
+
+apikey = Rails.application.credentials.deezer[:api_key]
+data_json = RestClient.get("https://deezerdevs-deezer.p.rapidapi.com/search?q=lemonade", { "X-RapidAPI-Host" => "deezerdevs-deezer.p.rapidapi.com", "X-RapidAPI-Key" => "#{apikey}"})
+parsed_data = JSON.parse(data_json)
+byebug
+array_songs= parsed_data['data']
+
+array_songs.each do |song|
+    title = song['title']
+    artist = song['artist']['name']
+    duration = song['duration']
+    album = song['album']['title']
+    cover_art = song['album']['cover_medium']
+    Song.create(title:title, artist:artist, duration:duration, album: album , cover_art: cover_art)   
+end
+
+
 lemonade = Song.create(title:"Lemonade", artist:"Beyonce", duration:180, album:"Lemonade", cover_art:"none")
 halo = Song.create(title:"Halo", artist:"Beyonce", duration:180, album:"I Am Sasha Fierce", cover_art:"https://images-na.ssl-images-amazon.com/images/I/41c6iGjVtDL._SY400_.jpg")
 rap_god = Song.create(title:"Rap God", artist:"Eminem", duration:180, album:"Marshall Mathers LP", cover_art:"none")
