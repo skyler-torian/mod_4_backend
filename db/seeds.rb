@@ -15,7 +15,7 @@ User.destroy_all
 SavedSong.destroy_all
 
 apikey = Rails.application.credentials.deezer[:api_key]
-data_json = RestClient.get("https://deezerdevs-deezer.p.rapidapi.com/search?q=lemonade", { "X-RapidAPI-Host" => "deezerdevs-deezer.p.rapidapi.com", "X-RapidAPI-Key" => "#{apikey}"})
+data_json = RestClient.get("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", { "X-RapidAPI-Host" => "deezerdevs-deezer.p.rapidapi.com", "X-RapidAPI-Key" => "#{apikey}"})
 parsed_data = JSON.parse(data_json)
 byebug
 array_songs= parsed_data['data']
