@@ -17,7 +17,6 @@ SavedSong.destroy_all
 apikey = Rails.application.credentials.deezer[:api_key]
 data_json = RestClient.get("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", { "X-RapidAPI-Host" => "deezerdevs-deezer.p.rapidapi.com", "X-RapidAPI-Key" => "#{apikey}"})
 parsed_data = JSON.parse(data_json)
-byebug
 array_songs= parsed_data['data']
 
 array_songs.each do |song|
@@ -26,7 +25,8 @@ array_songs.each do |song|
     duration = song['duration']
     album = song['album']['title']
     cover_art = song['album']['cover_medium']
-    Song.create(title:title, artist:artist, duration:duration, album: album , cover_art: cover_art)   
+    link = song['link']
+    Song.create(title:title, artist:artist, duration:duration, album: album , cover_art: cover_art, link: link)   
 end
 
 

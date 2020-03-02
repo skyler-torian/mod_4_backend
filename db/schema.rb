@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_160019) do
     t.integer "duration"
     t.string "album"
     t.string "cover_art"
+    t.string "link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
