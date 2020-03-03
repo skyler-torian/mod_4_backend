@@ -6,7 +6,7 @@ class CreateSongs < ActiveRecord::Migration[6.0]
       t.integer :duration
       t.string :album
       t.string :cover_art
-      t.string :link
+      
 
       t.timestamps
     end
