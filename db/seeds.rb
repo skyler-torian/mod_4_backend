@@ -25,7 +25,7 @@ array_songs.each do |song|
     duration = song['duration']
     album = song['album']['title']
     cover_art = song['album']['cover_medium']
-    link = song['link']
+    link = song['preview']
     Song.create(title:title, artist:artist, duration:duration, album: album , cover_art: cover_art, link: link)   
 end
 

@@ -1,7 +1,7 @@
 class SavedSongsController < ApplicationController
     def index
     
-        savedsongs = User.find(7).songs
+        savedsongs = User.find_by(name: 'Amia').songs
       
         render json: savedsongs
     end
