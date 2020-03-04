@@ -1,7 +1,7 @@
 class SavedSongsController < ApplicationController
-    def index
-    
-        savedsongs = User.find_by(name: 'Amia').songs
+    def show
+        
+        savedsongs = User.find(params[:id]).songs
       
         render json: savedsongs
     end

@@ -10,9 +10,10 @@ class SongsController < ApplicationController
     end
 
     def create
+        
         song = Song.find_or_create_by(song_params)
         
-        likesong = SavedSong.find_or_create_by(user_id: 7, song_id: song.id)
+        likesong = SavedSong.find_or_create_by(user_id: params[:id], song_id: song.id)
         render json: [song, likesong]
     end 
 
